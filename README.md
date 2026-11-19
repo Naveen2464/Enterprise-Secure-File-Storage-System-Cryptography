@@ -1,7 +1,25 @@
 # Secure File Storage System
-## Hybrid Cryptography & Secure File Handling
+## Enterprise Hybrid Cryptography & Secure File Handling
 
-A from-scratch educational Python project demonstrating hybrid file encryption.
+A production-grade educational and enterprise-level project demonstrating hybrid file encryption, tamper detection, and native OpenSSL integration.
+
+---
+
+## 🛠️ Tools & Technologies Used
+
+| Category | Tool / Technology | Purpose & Implementation |
+| :--- | :--- | :--- |
+| **Cryptographic Engine** | **OpenSSL (`OpenSSL 3.5.4`+)** | The global industry standard for enterprise security (used by Google, AWS, Cloudflare). Utilized for native **3072-bit RSA ASN.1 key inspection**, **digital signatures (`openssl dgst -sha256`)**, and **symmetric ciphers (`openssl enc -aes-256-cbc -pbkdf2`)**. |
+| **Python Crypto Library** | **Python Cryptography (PyCA)** | Official Python Cryptographic Authority library (`cryptography`). Provides direct C-level bindings to the OpenSSL backend for high-speed, memory-safe in-memory encryption and decryption. |
+| **Symmetric Cipher** | **AES-256-GCM** | Authenticated Encryption with Associated Data (AEAD). Encrypts file contents with a fresh 256-bit ephemeral Data Encryption Key (DEK) and computes a 128-bit GMAC authentication tag to prevent any bit manipulation. |
+| **Asymmetric Key Wrapping** | **RSA-OAEP (3072-bit, SHA-256)** | Optimal Asymmetric Encryption Padding (PKCS#1 v2.2). Encapsulates and protects the ephemeral AES session key using the recipient's public key (NIST SP 800-57 compliant). |
+| **Digital Signature** | **RSA-PSS (3072-bit, SHA-256)** | Probabilistic Signature Scheme with MGF1. Digitally signs the canonical package envelope using the sender's private key, enforcing **authenticity** and **non-repudiation**. |
+| **Integrity Hashing** | **SHA-256** | Secure Hash Algorithm 2 (FIPS 180-4). Generates an immutable 256-bit digest of the original plaintext to verify file integrity against data corruption. |
+| **Web UI Framework** | **Streamlit** | Powers the interactive web application, featuring the **Interactive Step-by-Step Simulation**, **Real-Time Cyber Attack Sandbox**, and **OpenSSL Web Studio**. |
+| **Backend REST API** | **FastAPI & Uvicorn** | Microservice architecture providing REST API endpoints (`/v1/files/encrypt`, `/v1/files/verify`, `/v1/files/decrypt`). |
+| **Testing Suite** | **Python Unittest** | Comprehensive automated test suite validating round-trip encryption, signature checks, tamper detection, and native OpenSSL CLI operations. |
+
+---
 
 ### Cryptographic design
 
