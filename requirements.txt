@@ -1,0 +1,6 @@
+streamlit>=1.36,<2
+cryptography>=42,<51
+fastapi>=0.110,<1
+uvicorn[standard]>=0.29,<1
+python-multipart>=0.0.9
+pydantic-settings>=2.2,<3
